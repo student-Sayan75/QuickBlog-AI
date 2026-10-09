@@ -1,0 +1,59 @@
+import React from "react";
+import { blog_data, blogCategories } from "../assets/assets";
+import { useState } from "react";
+import { motion } from "motion/react";
+import BlogCard from "./BlogCard";
+import { useAppContext } from "../context/AppContext";
+
+const BlogList = () => {
+  const [menu, setMenu] = useState("All");
+  const { blogs, input } = useAppContext();
+
+  const filteredBlogs = () => {
+    if (input === "") {
+      return blogs;
+    } else {
+      return blogs.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(input.toLowerCase()) ||
+          blog.category.toLowerCase().includes(input.toLowerCase()),
+      );
+    }
+  };
+  return (
+    <div>
+      <div className="flex justify-center gap-4 max-sm:gap-4 px-2 max-sm:text-xs sm:gap-8 my-10 relative">
+        {/* blog catagories */}
+        {blogCategories.map((item, index) => (
+          <div key={index} className="relative">
+            <button
+              className={`cursor-pointer text-gray-500 ${menu == item && "text-white px-4 pt-0.5"}`}
+              onClick={() => setMenu(item)}
+            >
+              {item}
+              {menu == item && (
+                <motion.div
+                  layoutId="underline"
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  className="absolute left-0 right-0 top-0 h-7 max-sm:h-5 -z-1 bg-primary rounded-full"
+                ></motion.div>
+              )}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <div className=" max-sm:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 cl:grid-cols-4 gap-8 mb-24 sm:mx-16 xl:px-40">
+        {" "}
+        {/* blog cards */}
+        {filteredBlogs()
+          .filter((blog) => (menu === "All" ? true : blog.category == menu))
+          .map((blog) => (
+            <BlogCard key={blog._id} blog={blog} />
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export default BlogList;
