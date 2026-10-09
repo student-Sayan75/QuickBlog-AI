@@ -30,13 +30,13 @@ Here are some screenshots showcasing the user interface and features of QuickBlo
 
 <!-- Add a screenshot of the homepage here. -->
 
-![QuickBlog Home Page](./screenshots/homepage.png)
+![QuickBlog Home Page](./screenshots/homepage.jpg)
 
 ### 📝 Blog Details Page
 
 <!-- Add a screenshot of an individual blog post here. -->
 
-![Blog Details Page](./screenshots/blog-details.png)
+![Blog Details Page](./screenshots/blog-details.jpg)
 
 ### 🔐 Admin Login
 
