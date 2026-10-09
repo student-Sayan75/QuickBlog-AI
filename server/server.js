@@ -11,7 +11,14 @@ await connectDB();
 
 // middleweres
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://quick-blog-ai-alpha.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
 app.use(express.json());
 
 //routes
